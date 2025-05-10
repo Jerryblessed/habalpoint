@@ -6,51 +6,51 @@ A self-hostable React Native (Expo) app with a Flask backend for farm‑fresh pr
 
 1. **Clone repo**
 
+   ```bash
+   git clone https://github.com/Jerryblessed/habalpoint.git
+   cd habalpoint
    ```
-   
-   bash
-   ```
-
-git clone [https://github.com/Jerryblessed/habalpoint.git](https://github.com/Jerryblessed/habalpoint.git)
-cd habalpoint
-
-````
 
 2. **Frontend (React Native)**
-```bash
-cd client
-npm install
-````
 
-* In `app/tabs/explorer.tsx`, replace hardcoded URLs with your backend endpoint:
+   ```bash
+   cd client
+   npm install
+   ```
 
-  ```js
-  src = 'http://localhost:5000';
-  ```
-  or if hosted on live server replace url 
+   * In `app/tabs/explorer.tsx`, replace the hardcoded endpoints:
+
+     ```js
+     // For web (iframe)
+     const ENDPOINT = 'http://localhost:5000';
+
+     // For native (WebView)
+     const ENDPOINT = 'http://localhost:5000';
+     ```
+   * If using a live server, substitute `localhost` with your server URL.
 
 3. **Backend (Flask)**
 
    ```bash
+   cd ../backend
+   cp .env.example .env
+   # Fill in the following in .env:
+   # SECRET_KEY=<your_secret>
+   # DB_URI=<your_database_uri>
+   # EMAIL=<smtp_email>
+   # PASSWORD=<smtp_password>
+   # STRIPE_PUBLIC=<stripe_publishable_key>
+   # STRIPE_PRIVATE=<stripe_secret_key>
+   # ENDPOINT_SECRET=<stripe_webhook_secret>
+
+   pip install -r requirements.txt
+   flask run --host=0.0.0.0 --port=5000
    ```
 
-cd ../backend
-cp .env.example .env
-
-# fill in SECRET\_KEY, DB\_URI, EMAIL, PASSWORD,
-
-# STRIPE\_PUBLIC, STRIPE\_PRIVATE, ENDPOINT\_SECRET
-
-pip install -r requirements.txt
-flask run --host=0.0.0.0 --port=5000
-
-```
-
 4. **Link frontend ↔ backend**
-   - Copy `http://<your-host>:5000` as `ENDPOINT` in `explorer.tsx`.
+
+   * Copy `http://<your-host>:5000` and set it as `ENDPOINT` in `explorer.tsx`.
 
 ## Demo
 
-https://vimeo.com/1083073538?share=copy#t=0
-
-```
+Watch the demo video: [https://vimeo.com/1083073538?share=copy#t=0](https://vimeo.com/1083073538?share=copy#t=0)
