@@ -54,3 +54,30 @@ A self-hostable React Native (Expo) app with a Flask backend for farm‑fresh pr
 ## Demo
 
 Watch the demo video: [https://vimeo.com/1083073538?share=copy#t=0](https://vimeo.com/1083073538?share=copy#t=0)
+
+## 🚀 Release
+
+Herbal Care ships two distinct Expo apps—one for **Customers** and one for **Vendors/Admins**—within the same repository:
+
+1. **Customer App**
+
+   ```bash
+   cd client
+   # Build and publish
+   expo publish --release-channel customer
+   # Or create standalone binaries:
+   eas build --platform all --profile customer
+   ```
+
+2. **Vendor App**
+
+   ```bash
+   cd vendor
+   npm install
+   # Build and publish
+   expo publish --release-channel vendor
+   # Or create standalone binaries:
+   eas build --platform all --profile vendor
+   ```
+
+> After publishing, install the **Customer** and **Vendor** builds separately via their respective URLs or app-store entries.
